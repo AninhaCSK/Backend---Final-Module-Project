@@ -10,14 +10,14 @@ export const getUsers = async (req, res, next) => {
   }
 };
 
-/* export const getUser = async (req, res, next) => {
+export const getOneUser = async (req, res, next) => {
   try {
-    const user = await userModel.findById(req.params.id);
+    const user = await UserModel.findById(req.params.id);
     res.status(200).json(user);
   } catch (e) {
     next(e);
   }
-}; */
+};
 
 export const deleteUser = async (req, res, next) => {
   try {
