@@ -30,10 +30,10 @@ export const deleteUser = async (req, res, next) => {
 
 export const updateUser = async (req, res, next) => {
   try {
-    const user = await UserModel.findByIdAndUpdate(req.params.id, req.body, {
+    const user = await UserModel.findOneAndUpdate({email: req.email}, {name:req.body.name} ,{
       new: true,
     });
-    res.status(200).json(user);
+    res.status(200).json({username:user.name,email:user.email,id:user.id});
   } catch (e) {
     next(e);
   }
@@ -47,7 +47,7 @@ export const addUser = async (req, res, next) => {
     }
     const user = new UserModel(req.body);
     await user.save();
-    res.status(200).json(user);
+    res.status(200).json({username:user.name,email:user.email,id:user.id});
   } catch (e) {
     next(e);
   }
